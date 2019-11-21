@@ -101,13 +101,22 @@ const addLisenerSort = prop => {
   });
 };
 
-const checked = (value, chBox) => {
-  if (!chBox.checked) {
-    const index = selectedValues.findIndex(el => el === value);
-    selectedValues.splice(index, 1);
-    return;
+const filterBy = (filterValue = null) => {
+  if (!filterValue) {
+
   }
-  selectedValues.push(value);
+
+};
+
+const checked = (value, chBox) => {
+  chBox.checked ? filterBy(value) : filterBy();
+
+  // if (!chBox.checked) {
+  //   const index = selectedValues.findIndex(el => el === value);
+  //   selectedValues.splice(index, 1);
+  //   return;
+  // }
+  // selectedValues.push(value);
 };
 
 const createChBox = label => {
@@ -124,7 +133,7 @@ const createChBox = label => {
   div.appendChild(input);
   div.appendChild(labelTag);
 
-  input.addEventListener('click', ({target}) => {checked(label, target);});
+  input.addEventListener('click', ({target}) => {checked(label, target);}); //event.target
 
   chBoxes.appendChild(div);
 };
